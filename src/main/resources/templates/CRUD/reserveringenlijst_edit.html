@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+    <div class="row" th:replace="fragmenten/header"/>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="page-header">
+                    <h1>De bibliotheek</h1>
+                    <p th:text="'Reservering aanpassen van '+${reservering.lid.voornaam}+' '+${reservering.lid.achternaam}+' met het ISBN '+${reservering.boek.ISBN}"/>
+                </div>
+                <form action="/reserveringen/edC" method="get" class="form-inline">
+                    <fieldset>
+                        <legend>Wijzig deze reservering</legend>
+                        <input type="hidden" name="isbn" th:value="${reservering.boek.ISBN}"/>
+                        <input type="hidden" name="lidnr" th:value="${reservering.lid.lidNr}"/>
+                        <div class="form-group">
+                            <label for="datum">Datum:</label>
+                            <input type="date" id="datum" name="datum" th:value="${reservering.reserveringsDatum}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Aanpassen"/>
+                        </div>
+                    </fieldset>
+                </form>
+                <div th:replace="fragmenten/backButton"/>
+            </div>
+        </div>
+    <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

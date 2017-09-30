@@ -1,0 +1,42 @@
+<form action="/leden/add" method="get">
+    <fieldset>
+        <legend>Registreren:</legend>
+        <div class="form-group">
+            <label for="lidnr">Lidnummer:</label>
+            <input id="lidnr" name="lidnr" class="form-control" type="number" placeholder="Lidnummer" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="voornaam">Voornaam:</label>
+            <input id="voornaam" name="voornaam" class="form-control" placeholder="Voornaam" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="achternaam">Achternaam:</label>
+            <input id="achternaam" name="achternaam" class="form-control" placeholder="Achternaam" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="straat">Straat:</label>
+            <input id="straat" name="straat" class="form-control" placeholder="Straat" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="huisnummer">Huisnummer:</label>
+            <input id="huisnummer" name="huisnummer" class="form-control" type="number" placeholder="Huisnummer" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="stad">Stad:</label>
+            <input id="stad" name="stad" class="form-control" placeholder="Stad" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="telefoon">Telefoonnummer:</label>
+            <input id="telefoon" name="telefoon" class="form-control" type="number" placeholder="Telefoonnummer" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email adres:</label>
+            <input id="email" name="email" class="form-control" type="email" placeholder="Email adres" required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="boete">Boete:</label>
+            €<input id="boete" value="0.0" min="0.00" max="1000.0" name="boete" class="form-control" type="number" step="0.5" placeholder="Boete" required="true"/>
+        </div>
+    </fieldset>
+    <input type="submit" class="form-control btn btn-success" value="Toevoegen"/>
+</form>

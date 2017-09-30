@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="page-header">
+                    <h1>De bibliotheek</h1>
+                    <p th:text="'Lid aanpassen met het nummer '+${lid.lidNr}"/>
+                </div>
+                <form action="/leden/edC" method="get" class="form-vertical">
+                    <fieldset>
+                        <legend>Wijzig een lid</legend>
+                        <input type="hidden" name="lidnr" th:value="${lid.lidNr}"/>
+                        <div class="form-group">
+                            <label for="voornaam">Voornaam:</label>
+                            <input id="voornaam" name="voornaam" th:value="${lid.voornaam}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="achternaam">Achternaam:</label>
+                            <input id="achternaam" name="achternaam" th:value="${lid.achternaam}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="straat">Straat:</label>
+                            <input id="straat" name="straat" th:value="${lid.straat}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="huisnummer">Huisnummer:</label>
+                            <input id="huisnummer" name="huisnummer" th:value="${lid.huisnummer}" class="form-control" type="number" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="stad">Stad:</label>
+                            <input id="stad" name="stad" th:value="${lid.stad}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefoon">Telefoonnummer:</label>
+                            <input id="telefoon" name="telefoon" th:value="${lid.telefoonnummer}" class="form-control" type="number" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input id="email" name="email" th:value="${lid.email}" class="form-control" type="email" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="boete">Boete:</label>
+                            €<input id="boete" name="boete" th:value="${lid.boete}" class="form-control" type="number" step="0.5" value="0.00" min="0.00" max="1000" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Aanpassen"/>
+                        </div>
+                    </fieldset>
+                </form>
+                <div th:replace="fragmenten/backButton"/>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="page-header">
+                    <p th:text="'Uitlening aanpassen van '+${uitlening.lid.voornaam}+' '+${uitlening.lid.achternaam}+' met het exemplaar ID '+${uitlening.exemplaar.exemplaarID}"/>
+                </div>
+                <form action="/uitleningen/edC" method="get" class="form-inline">
+                    <fieldset>
+                        <legend>Wijzig deze uitlening</legend>
+                        <input type="hidden" name="exemplaarid" th:value="${uitlening.exemplaar.exemplaarID}"/>
+                        <input type="hidden" name="lidnr" th:value="${uitlening.lid.lidNr}"/>
+                        <div class="form-group">
+                            <label for="datum">Datum teruggave:</label>
+                            <input type="date" id="datum" name="datum" th:value="${uitlening.datumTerugave}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Aanpassen"/>
+                        </div>
+                    </fieldset>
+                </form>
+                <div th:replace="fragmenten/backButton"/>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

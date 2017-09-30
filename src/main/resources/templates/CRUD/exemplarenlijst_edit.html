@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="page-header">
+                    <h1>De bibliotheek</h1>
+                    <p th:text="'Exemplaar aanpassen met het ISBN nummer '+${exemplaar.ExemplaarID}"/>
+                </div>
+                <form action="/exemplaren/edC" method="get" class="form-inline">
+                    <fieldset>
+                        <legend>Wijzig een exemplaar</legend>
+                        <input type="hidden" name="exemplaarid" th:value="${exemplaar.ExemplaarID}"/>
+                        <div class="form-group">
+                            <label for="uitleenperiode">Uitleenperiode in dagen:</label>
+                            <input type="number" id="uitleenperiode" name="uitleenperiode" th:value="${exemplaar.uitleenperiode}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Aanpassen"/>
+                        </div>
+                    </fieldset>
+                </form>
+                <div th:replace="fragmenten/backButton"/>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

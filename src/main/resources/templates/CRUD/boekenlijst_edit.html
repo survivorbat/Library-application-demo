@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="page-header">
+                    <p th:text="'Boek aanpassen met het ISBN nummer '+${boek.ISBN}"/>
+                </div>
+                <form action="/boeken/edC" method="get" class="form-inline">
+                    <fieldset>
+                        <legend>Wijzig een boek</legend>
+                        <input type="hidden" name="ISBN" th:value="${boek.ISBN}"/>
+                        <div class="form-group">
+                            <label for="titel">Titel:</label>
+                            <input id="titel" name="titel" th:value="${boek.titel}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="auteur">Auteur:</label>
+                            <input id="auteur" name="auteur" th:value="${boek.auteur}" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="editie">Editie:</label>
+                            <input id="editie" name="editie" th:value="${boek.editie}" type="number" class="form-control" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="Aanpassen"/>
+                        </div>
+                    </fieldset>
+                </form>
+                <div th:replace="fragmenten/backButton"/>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

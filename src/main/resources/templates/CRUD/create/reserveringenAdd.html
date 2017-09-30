@@ -1,0 +1,23 @@
+<form action="/reserveringen/add" method="get">
+    <fieldset>
+        <legend>Boek reserveren:</legend>
+        <div class="form-group">
+            <label for="isbn">Boek:</label>
+            <select name="isbn" id="isbn" class="form-control">
+                <option th:each="i : ${boeken}" th:value="${i.ISBN}" th:text="${i.titel}+', '+${i.auteur}+' ('+${i.ISBN}+')'" class="form-control" required="true"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="lidnr">Lid:</label>
+            <select name="lidnr" id="lidnr" class="form-control">
+                <option th:each="i : ${leden}" th:value="${i.lidNr}" th:text="${i.Voornaam}+' '+${i.Achternaam}+' ('+${i.lidNr}+')'" class="form-control" required="true"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="reserverings_datum">Datum:</label>
+            <input id="reserverings_datum" name="datum" class="form-control" type="hidden" placeholder="Reserveringsdatum"/>
+            <div id="reserverings_datumdisplay"></div>
+        </div>
+    </fieldset>
+    <input type="submit" class="form-control btn btn-success" value="Toevoegen"/>
+</form>

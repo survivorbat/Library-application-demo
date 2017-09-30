@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <div th:replace="fragmenten/backButton"/>
+                    <p>Alle reserveringen</p>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Boek</th>
+                            <th>Lid</th>
+                            <th>Datum</th>
+                            <th colspan="2"/>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="i : ${reserveringen}">
+                                <td th:text="${i.boek.ISBN}+' ('+${i.boek.titel}+', '+${i.boek.auteur}+')'"/>
+                                <td th:text="${i.lid.voornaam + ' ' + i.lid.achternaam + ' ('+i.lid.lidNr+')'}"/>
+                                <td th:text="${i.reserveringsDatum}"/>
+                                <td><a th:href="@{/reserveringen/ed(ISBN=${i.boek.ISBN},lidnr=${i.lid.lidNr})}"><button class="btn btn-warning">Wijzigen</button></a></td>
+                                <td><a th:href="@{/reserveringen/del(ISBN=${i.boek.ISBN},lidnr=${i.lid.lidNr})}"><button class="btn btn-danger">Verwijderen</button></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <div th:replace="CRUD/create/reserveringenAdd"></div>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

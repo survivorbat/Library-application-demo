@@ -1,0 +1,37 @@
+body {
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+.boekentable {
+    table-layout:fixed;
+    width:100%;
+}
+.center {
+    text-align:center;
+}
+.page-header {
+    overflow:auto;
+}
+
+.page-header h1 {
+    float:left;
+    width:80%;
+}
+.page-header img {
+    float:left;
+    margin-top:20px;
+    margin-right:0.5em;
+}
+.jumbotron {
+    background-color: #f4fbff !important;
+}
+table {
+    background-color:white;
+}
+.table {
+    background-color:white !important;
+}
+.bold {
+    font-weight:bold;
+}

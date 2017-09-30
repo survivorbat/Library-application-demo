@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <div th:replace="fragmenten/backButton"/>
+                    <p>Alle exemplaren</p>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ExemplaarID</th>
+                            <th>ISBN</th>
+                            <th>Uitleenperiode</th>
+                            <th/>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="i : ${exemplaren}">
+                                <td th:text="${i.ExemplaarID}"/>
+                                <td th:text="${i.boek.ISBN}+' ('+ ${i.boek.titel} + ', ' + ${i.boek.auteur}+')'"/>
+                                <td th:text="${i.uitleenperiode}"/>
+                                <td class="center">
+                                    <a th:href="@{/exemplaren/ed?exemplaarid=}+${i.ExemplaarID}"><button class="btn btn-warning" style="margin-bottom:0.5em">Wijzigen</button></a>
+                                    <div th:unless="${uitleningen.contains(i.ExemplaarID) || uitleningen.contains(i.ExemplaarID)}">
+                                        <a th:href="@{/exemplaren/del?exemplaarid=}+${i.ExemplaarID}"><button class="btn btn-danger">Verwijderen</button></a>
+                                    </div>
+                                    <div th:if="${uitleningen.contains(i.ExemplaarID) || uitleningen.contains(i.ExemplaarID)}">
+                                        <button class="btn" disabled="disabled" title="Dit exemplaar heeft nog uitleningen, verwijder deze uitleningen eerst">Verwijderen</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <form action="/exemplaren/add" method="get">
+                        <fieldset>
+                            <legend>Voeg een nieuw exemplaar toe:</legend>
+                            <div class="form-group">
+                                <label for="exemplaarid">Exemplaar ID:</label>
+                                <input id="exemplaarid" type="number" name="exemplaarid" class="form-control" placeholder="Exemplaar ID" required="true"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="ISBN">Boek:</label>
+                                <select name="ISBN" id="ISBN" class="form-control">
+                                    <option th:each="i : ${boeken}" th:value="${i.ISBN}" th:text="${i.titel}+', '+${i.auteur}+' ('+${i.ISBN}+')'" class="form-control"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="uitleenperiode">Uitleenperiode in dagen:</label>
+                                <input id="uitleenperiode" name="uitleenperiode" class="form-control" type="number" placeholder="Uitleenperiode" required="true"/>
+                            </div>
+                        </fieldset>
+                        <input type="submit" class="form-control btn btn-success" value="Toevoegen"/>
+                    </form>
+                    <br/>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

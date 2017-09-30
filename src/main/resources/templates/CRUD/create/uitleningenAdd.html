@@ -1,0 +1,23 @@
+<form action="/uitleningen/add" method="get">
+    <fieldset>
+        <legend>Een boek lenen:</legend>
+        <div class="form-group">
+            <label for="uitlening_exemplaarid">Exemplaar:</label>
+            <select name="exemplaarid" id="uitlening_exemplaarid" class="form-control" onclick="calculateDays()" onchange="calculateDays()">
+                <option th:attr="tijd=${i.uitleenperiode}" th:each="i : ${exemplaren}" th:value="${i.exemplaarID}" th:text="${i.exemplaarID}+' ('+${i.boek.titel}+', '+${i.boek.auteur}+')'" class="form-control" required="true"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="lidnr">Lidnummer:</label>
+            <select name="lidnr" id="lidnr" class="form-control">
+                <option th:each="i : ${leden}" th:value="${i.lidNr}" th:text="${i.Voornaam}+' '+${i.Achternaam}+' ('+${i.lidNr}+')'" class="form-control"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="uitlening_datum">Datum teruggave:</label>
+            <input id="uitlening_datum" name="datum" value="" class="form-control" type="hidden" placeholder="Datum"/>
+            <div id="uitlening_datum_display"></div>
+        </div>
+    </fieldset>
+    <input type="submit" class="form-control btn btn-success" value="Toevoegen" required="true"/>
+</form>

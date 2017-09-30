@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org" >
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <div th:replace="fragmenten/backButton"/>
+                    <p>Alle leden</p>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>LidNr</th>
+                                <th>Voornaam</th>
+                                <th>Achternaam</th>
+                                <th>Straat</th>
+                                <th>Huisnummer</th>
+                                <th>Stad</th>
+                                <th>Telefoonnummer</th>
+                                <th>Email</th>
+                                <th>Boete</th>
+                                <th/>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="i : ${leden}">
+                                <td th:text="${i.lidNr}"/>
+                                <td th:text="${i.voornaam}"/>
+                                <td th:text="${i.achternaam}"/>
+                                <td th:text="${i.straat}"/>
+                                <td th:text="${i.huisnummer}"/>
+                                <td th:text="${i.stad}"/>
+                                <td th:text="${i.telefoonnummer}"/>
+                                <td th:text="${i.email}"/>
+                                <td th:text="'€' + ${i.boete}+'0'"/>
+                                <td class="center">
+                                    <a th:href="@{/leden/ed?lidnr=}+${i.lidNr}"><button class="btn btn-warning" style="margin-bottom:0.5em">Wijzigen</button></a>
+                                    <div th:unless="${uitleningLeden.contains(i.lidNr) || reserveringLeden.contains(i.lidNr)}">
+                                        <a th:href="@{/leden/del?lidnr=}+${i.lidNr}"><button class="btn btn-danger">Verwijderen</button></a>
+                                    </div>
+                                    <div th:if="${uitleningLeden.contains(i.lidNr) || reserveringLeden.contains(i.lidNr)}">
+                                        <button class="btn" disabled="disabled" title="Dit lid heeft nog uitleningen of reserveringen open staan, hierdoor kan deze nog niet verwijderd worden">Verwijderen</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <div th:replace="CRUD/create/ledenAdd"></div>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

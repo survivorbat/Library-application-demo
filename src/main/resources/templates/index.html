@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+    <div class="row" th:replace="fragmenten/header"/>
+    <div class="row">
+        <div class="container">
+            <div class="col-sm-6">
+                <div class="jumbotron">
+                    <h2>Menu</h2>
+                    <div class="list-group">
+                        <a th:href="@{/}" href="/" class="list-group-item">
+                            Home
+                            <span class="badge" th:text="${stats.total} + ' objecten'"/>
+                        </a>
+                        <a th:href="@{/boeken}" href="@{/boeken}" class="list-group-item">
+                            Boeken
+                            <span class="badge" th:text="${stats.boeken} + ' boeken'"/>
+                        </a>
+                        <a th:href="@{/exemplaren}" href="@{/exemplaren}" class="list-group-item">
+                            Exemplaren
+                            <span class="badge" th:text="${stats.exemplaren} + ' exemplaren'"/>
+                        </a>
+                        <a th:href="@{/uitleningen}" href="@{/uitleningen}" class="list-group-item">
+                            Uitleningen
+                            <span class="badge" th:text="${stats.uitleningen} + ' uitleningen'"/>
+                        </a>
+                        <a th:href="@{/leden}" href="@{/leden}" class="list-group-item">
+                            Leden
+                            <span class="badge" th:text="${stats.leden} + ' leden'"/>
+                        </a>
+                        <a th:href="@{/reserveringen}" href="@{/reserveringen}" class="list-group-item">
+                            Reserveringen
+                            <span class="badge" th:text="${stats.reserveringen} + ' reserveringen'"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="jumbotron">
+                    <h2>Statistieken</h2>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Eenheid</th>
+                                <th>Aantal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Boeken</td>
+                                <td th:text="${stats.boeken}"/>
+                            </tr>
+                            <tr>
+                                <td>Exemplaren</td>
+                                <td th:text="${stats.exemplaren}"/>
+                            </tr>
+                            <tr>
+                                <td>Uitleningen</td>
+                                <td th:text="${stats.uitleningen}"/>
+                            </tr>
+                            <tr>
+                                <td>Reserveringen</td>
+                                <td th:text="${stats.reserveringen}"/>
+                            </tr>
+                            <tr>
+                                <td>Leden</td>
+                                <td th:text="${stats.leden}"/>
+                            </tr>
+                            <tr>
+                                <td class="bold">Totaal aan objecten:</td>
+                                <td class="bold" th:text="${stats.total}"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-sm-4">
+                <div class="jumbotron">
+                    <div th:replace="CRUD/create/uitleningenAdd"/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="jumbotron">
+                    <div th:replace="CRUD/create/reserveringenAdd"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="jumbotron">
+                    <div th:replace="CRUD/create/ledenAdd"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+    <head th:replace="fragmenten/head"/>
+    <body>
+        <div class="row" th:replace="fragmenten/header"/>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <div th:replace="fragmenten/backButton"/>
+                    <p>Alle uitleningen</p>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Exemplaar ID</th>
+                            <th>Lid</th>
+                            <th>Teruggave datum</th>
+                            <th colspan="2"/>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="i : ${uitleningen}">
+                                <td th:text="${i.exemplaar.exemplaarID}+' ('+${i.exemplaar.boek.titel}+', '+${i.exemplaar.boek.auteur}+')'"/>
+                                <td th:text="${i.lid.voornaam + ' ' + i.lid.achternaam + ' ('+i.lid.lidNr+')'}"/>
+                                <td th:text="${i.datumTerugave}"/>
+                                <td><a th:href="@{/uitleningen/ed(exemplaarid=${i.exemplaar.exemplaarID},lidnr=${i.lid.lidNr})}"><button class="btn btn-warning">Wijzigen</button></a></td>
+                                <td><a th:href="@{/uitleningen/del(exemplaarid=${i.exemplaar.exemplaarID},lidnr=${i.lid.lidNr})}"><button class="btn btn-danger">Verwijderen</button></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="jumbotron">
+                    <div th:replace="CRUD/create/uitleningenAdd"/>
+                    <div th:replace="fragmenten/backButton"/>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragmenten/scripts"/>
+    </body>
+</html>
